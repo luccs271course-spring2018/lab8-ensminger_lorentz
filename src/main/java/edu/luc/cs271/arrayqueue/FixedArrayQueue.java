@@ -3,6 +3,7 @@ package edu.luc.cs271.arrayqueue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.*;
 
 public class FixedArrayQueue<E> implements SimpleQueue<E> {
 
@@ -15,6 +16,11 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
   private int rear;
 
   private E[] data;
+  
+  public ArrayQueue(){
+    this(DEFAULT_CAPACITY);
+  }
+  
 
   // TODO why do we need an explicit constructor?
 	
@@ -30,12 +36,13 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
 
   @Override
   public boolean offer(final E obj) {
-    if(size == capacity)
-	{
-		int newCapacity = 2 * capacity;
-		E[] newData = (E[]) new Object[newCapacity];
+
+    if(size == capacity){
+        int newCapacity = 2 * capacity;
+		E[] newData = (E[]) new  Object[newCapacity];
 		int j = front;
 		for(int i = 0; i < size; i++)
+		  
 		{
 			newData[i] = data[i];
 			j = (j+1) % capacity;
@@ -44,11 +51,12 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
 		rear = size -1; 
 		capacity = newCapacity;
 		data = newData;
-	}
-	size = size + 1;
-	rear = (rear + 1) % capacity;
-	data[rear] = obj;
-	return true;
+    }
+    size++;
+    rear = (rear + 1) % capacity;
+    data[rear] = obj;
+    return true;
+    
   }
 
   @Override
