@@ -9,7 +9,11 @@ public class SingleQueueService {
 
   public static void main(final String[] args) throws InterruptedException {
     // TODO read successive input lines until EOF and try to add them to the queue
-
+	for(int i = 0; i < args.length; i++)
+	{
+		FixedArrayQueue.offer(args[i]);
+	}
+	  //I wrote this but it is having issues with a static method
     // queue for customer names
     final SimpleQueue<String> queue = new FixedArrayQueue<>(5);
 
@@ -24,8 +28,11 @@ public class SingleQueueService {
                 String current;
 		int remaining;
                 synchronized (lock) {
-                  current = null; // TODO try to take next name from queue
-		  remaining = 0; // TODO determine resulting size of queue
+                  current = FixedArrayQueue.poll();
+					// TODO try to take next name from queue
+		  remaining = FixedArrayQueue.size();
+					// TODO determine resulting size of queue
+					//I wrote these but they are having issues with a static method reference 
                 }
                 if (current == null) {
                   System.out.println("no one waiting");

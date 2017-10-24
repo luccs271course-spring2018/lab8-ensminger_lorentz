@@ -6,7 +6,7 @@ import java.util.List;
 
 public class FixedArrayQueue<E> implements SimpleQueue<E> {
 
-  private final int capacity;
+  private int capacity;
 
   private int size;
 
@@ -14,7 +14,7 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
 
   private int rear;
 
-  private final E[] data;
+  private E[] data;
 
   // TODO why do we need an explicit constructor?
 	
@@ -76,7 +76,7 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
 
   @Override
   public boolean isEmpty() {
-    if(data[front] == 0)
+    if((int)data[front] == 0)
 	{
     return true;
 	}
@@ -96,8 +96,8 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
 	  ArrayList<E> capacityList = new ArrayList<>(size);
 	  for(int i = 0; i < size; i++)
 	  {
-		  capcityList.add(data[i]);
+		  capacityList.add(data[i]);
 	  }
-    return Arrays.asList(capacityList);
+    return Arrays.asList();
   }
 }
