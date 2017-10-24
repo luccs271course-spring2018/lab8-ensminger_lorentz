@@ -17,6 +17,7 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
   private final E[] data;
 
   // TODO why do we need an explicit constructor?
+	
 
   @SuppressWarnings("unchecked")
   public FixedArrayQueue(final int capacity) {
@@ -29,26 +30,59 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
 
   @Override
   public boolean offer(final E obj) {
-    // TODO
-    return false;
+    if(size == capacity)
+	{
+		int newCapacity = 2 * capacity;
+		E[] newData = (E[]) new Object[newCapacity];
+		int j = front;
+		for(int i = 0; i < size; i++)
+		{
+			newData[i] = data[i];
+			j = (j+1) % capacity;
+		}
+		front = 0;
+		rear = size -1; 
+		capacity = newCapacity;
+		data = newData;
+	}
+	size = size + 1;
+	rear = (rear + 1) % capacity;
+	data[rear] = obj;
+	return true;
   }
 
   @Override
   public E peek() {
-    // TODO
-    return null;
+    if(size == 0){
+		return null;
+	}
+    else{
+		return data[front];
+	}
   }
 
   @Override
   public E poll() {
-    // TODO
-    return null;
+   	if(size == 0){
+		return null;
+	}
+	 else{
+    		E result = data[front];
+		 	front = (front + 1)%capacity;
+		 size = size - 1;
+		 return result;
+	 }
   }
 
   @Override
   public boolean isEmpty() {
-    // TODO
+    if(data[front] == 0)
+	{
     return true;
+	}
+	  else{
+		  return false;
+	  }
   }
 
   @Override
@@ -59,6 +93,11 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
   @Override
   public List<E> asList() {
     // TODO implement using an ArrayList preallocated with the right size
-    return Arrays.asList();
+	  ArrayList<E> capacityList = new ArrayList<>(size);
+	  for(int i = 0; i < size; i++)
+	  {
+		  capcityList.add(data[i]);
+	  }
+    return Arrays.asList(capacityList);
   }
 }
