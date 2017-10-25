@@ -31,26 +31,11 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
   public boolean offer(final E obj) {
 
     if (size == capacity) {
-      //     int newCapacity = 2 * capacity;
-      // E[] newData = (E[]) new  Object[newCapacity];
-      // int j = front;
-      // for(int i = 0; i < size; i++)
-
-      // {
-      // 	newData[i] = data[i];
-      // 	j = (j+1) % capacity;
-      // }
-      // front = 0;
-      // rear = size -1;
-      // capacity = newCapacity;
-      // data = newData;
-      // throw java.lang.IllegalStateException;
       return false;
     }
     size = size + 1;
     rear = (rear + 1) % capacity;
     data[rear] = obj;
-    // System.out.println("offer " + size);
     return true;
   }
 
