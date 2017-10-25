@@ -17,9 +17,6 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
 
   private E[] data;
   
-  public ArrayQueue(){
-    this(DEFAULT_CAPACITY);
-  }
   
 
   // TODO why do we need an explicit constructor?
@@ -38,7 +35,7 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
   public boolean offer(final E obj) {
 
     if(size == capacity){
-        int newCapacity = 2 * capacity;
+       int newCapacity = 2 * capacity;
 		E[] newData = (E[]) new  Object[newCapacity];
 		int j = front;
 		for(int i = 0; i < size; i++)
@@ -108,4 +105,6 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
 	  }
     return Arrays.asList();
   }
+  
+
 }
