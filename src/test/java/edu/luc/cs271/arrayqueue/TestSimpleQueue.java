@@ -125,6 +125,7 @@ public class TestSimpleQueue {
     final String value3 = "what";
     fixture.offer(value1);
     fixture.offer(value2);
+    // fixture.offer("trash");
     fixture.poll();
     fixture.offer(value3);
     final List<String> list = fixture.asList();
