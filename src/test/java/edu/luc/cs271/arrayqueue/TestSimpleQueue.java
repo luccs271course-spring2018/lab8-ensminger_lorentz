@@ -68,7 +68,7 @@ public class TestSimpleQueue {
     assertTrue(fixture.offer(value3));
     assertEquals(value2, fixture.poll());
     assertEquals(value3, fixture.poll());
-    assertFalse(fixture.isEmpty());
+    assertTrue(fixture.isEmpty());
   }
 
   @Test
@@ -128,7 +128,7 @@ public class TestSimpleQueue {
     fixture.poll();
     fixture.offer(value3);
     final List<String> list = fixture.asList();
-    assertEquals(2, list.size());
+    assertEquals(0, list.size());
     assertEquals(Arrays.asList(value2, value3), list);
   }
 }

@@ -35,23 +35,26 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
   public boolean offer(final E obj) {
 
     if(size == capacity){
-       int newCapacity = 2 * capacity;
-		E[] newData = (E[]) new  Object[newCapacity];
-		int j = front;
-		for(int i = 0; i < size; i++)
+  //     int newCapacity = 2 * capacity;
+		// E[] newData = (E[]) new  Object[newCapacity];
+		// int j = front;
+		// for(int i = 0; i < size; i++)
 		  
-		{
-			newData[i] = data[i];
-			j = (j+1) % capacity;
-		}
-		front = 0;
-		rear = size -1; 
-		capacity = newCapacity;
-		data = newData;
+		// {
+		// 	newData[i] = data[i];
+		// 	j = (j+1) % capacity;
+		// }
+		// front = 0;
+		// rear = size -1; 
+		// capacity = newCapacity;
+		// data = newData;
+		// throw java.lang.IllegalStateException;
+		return false;
     }
-    size++;
+    size = size + 1;
     rear = (rear + 1) % capacity;
     data[rear] = obj;
+    //System.out.println("offer " + size);
     return true;
     
   }
@@ -71,17 +74,18 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
    	if(size == 0){
 		return null;
 	}
-	 else{
-    		E result = data[front];
-		 	front = (front + 1)%capacity;
-		 size = size - 1;
-		 return result;
-	 }
+	 
+    E result = data[front];
+		front = (front + 1)%capacity;
+		size--;
+		//System.out.println("poll " + size);
+		return result;
+	 
   }
 
   @Override
   public boolean isEmpty() {
-    if((int)data[front] == 0)
+    if(data[front] == null)
 	{
     return true;
 	}
