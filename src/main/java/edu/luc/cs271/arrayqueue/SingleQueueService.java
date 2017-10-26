@@ -13,7 +13,7 @@ public class SingleQueueService {
     for (int i = 0; i < args.length; i++) {
       queue.offer(args[i]);
     }
-    
+
     // queue for customer names
 
     // lock object for thread safety
@@ -27,11 +27,11 @@ public class SingleQueueService {
                 String current;
                 int remaining;
                 synchronized (lock) {
-                  current = queue.poll.toString();
+                  current = queue.poll().toString();
                   // TODO try to take next name from queue
                   remaining = queue.size();
                   // TODO determine resulting size of queue
-                  
+
                 }
                 if (current == null) {
                   System.out.println("no one waiting");
