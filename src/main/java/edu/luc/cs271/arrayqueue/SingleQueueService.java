@@ -27,11 +27,8 @@ public class SingleQueueService {
                 String current;
                 int remaining;
                 synchronized (lock) {
-<<<<<<< HEAD
-                  current = queue.poll().toString();
-=======
+
                   current = queue.poll();
->>>>>>> TayBranch
                   // TODO try to take next name from queue
                   remaining = queue.size();
                   // TODO determine resulting size of queue
