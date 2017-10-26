@@ -13,7 +13,7 @@ public class SingleQueueService {
     for (int i = 0; i < args.length; i++) {
       queue.offer(args[i]);
     }
-    
+
     // queue for customer names
 
     // lock object for thread safety
@@ -27,11 +27,11 @@ public class SingleQueueService {
                 String current;
                 int remaining;
                 synchronized (lock) {
-                  current = queue.poll.toString();
+                  current = queue.poll();
                   // TODO try to take next name from queue
                   remaining = queue.size();
                   // TODO determine resulting size of queue
-                  
+
                 }
                 if (current == null) {
                   System.out.println("no one waiting");
@@ -55,7 +55,13 @@ public class SingleQueueService {
       final String name = input.nextLine();
       boolean result;
       synchronized (lock) {
-        result = false; // TODO try to add this name tothe queue
+        if (queue.offer(name) == false) {
+
+          result = false; // TODO try to add this name tothe queue
+        } else {
+          queue.offer(name);
+          result = true;
+        }
       }
       if (result) {
         System.out.println(name + " has joined the queue");
