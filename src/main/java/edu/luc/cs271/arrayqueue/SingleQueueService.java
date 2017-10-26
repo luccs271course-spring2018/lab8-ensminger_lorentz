@@ -27,7 +27,11 @@ public class SingleQueueService {
                 String current;
                 int remaining;
                 synchronized (lock) {
+<<<<<<< HEAD
                   current = queue.poll().toString();
+=======
+                  current = queue.poll();
+>>>>>>> TayBranch
                   // TODO try to take next name from queue
                   remaining = queue.size();
                   // TODO determine resulting size of queue
@@ -55,7 +59,13 @@ public class SingleQueueService {
       final String name = input.nextLine();
       boolean result;
       synchronized (lock) {
-        result = false; // TODO try to add this name tothe queue
+        if (queue.offer(name) == false) {
+
+          result = false; // TODO try to add this name tothe queue
+        } else {
+          queue.offer(name);
+          result = true;
+        }
       }
       if (result) {
         System.out.println(name + " has joined the queue");
