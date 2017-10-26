@@ -27,7 +27,6 @@ public class SingleQueueService {
                 String current;
                 int remaining;
                 synchronized (lock) {
-
                   current = queue.poll();
                   // TODO try to take next name from queue
                   remaining = queue.size();
